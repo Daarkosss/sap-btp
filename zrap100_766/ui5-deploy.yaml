@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zrap100
+type: application
+builder:
+  customTasks:
+    - name: ui5-tooling-transpile-task
+      afterTask: replaceVersion
+      configuration:
+        debug: true
+        transformModulesToUI5:
+          overridesToOverride: true
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: abap-cloud-default_abap-trial-3a4b5eactrial-dev
+          url: https://7ab63f61-d9c7-4bcf-9057-beead39881c1.abap.us10.hana.ondemand.com/
+          scp: true
+        app:
+          name: ZRAP100_766
+          description: ZRAP100_766
+          package: ZRAP100_766
+          transport: ''
+        exclude:
+          - /test/
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**

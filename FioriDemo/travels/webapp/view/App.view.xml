@@ -1,0 +1,27 @@
+<mvc:View
+    controllerName="ns.travels.controller.App"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Shell id="shell-1">
+        <App
+            id="app"
+            class="myAppDemoWT"
+        >
+            <pages>
+                <Page
+                    id="page-2"
+                    title="{i18n>homePageTitle}"
+                >
+                    <content>
+                        <mvc:XMLView
+                            id="xml-view-1"
+                            viewName="ns.travels.view.HelloPanel"
+                        />
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

@@ -1,0 +1,143 @@
+{
+  "_version": "1.73.1",
+  "sap.app": {
+    "id": "ns.travels",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.19.3",
+      "toolsId": "2036bcd4-0e01-4c96-a996-1a8e47016577"
+    },
+    "dataSources": {
+      "ZRAP100_UI_TRAVEL_O2_090_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZRAP100_UI_TRAVEL_O2_090_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZRAP100_UI_TRAVEL_O2_090_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZRAP100_UI_TRAVEL_O2_090/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZRAP100_UI_TRAVEL_O2_090_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Object-display": {
+          "semanticObject": "Object",
+          "action": "display",
+          "title": "{{Object-display.flpTitle}}",
+          "subTitle": "{{Object-display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.136.8",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ns.travels.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "ns.travels.view",
+        "async": true
+      },
+      "routes": [
+        {
+          "name": "homepage",
+          "pattern": ":?query:",
+          "target": "homepage"
+        },
+        {
+          "name": "travels",
+          "pattern": "travels",
+          "target": "travels"
+        }
+      ],
+      "targets": {
+        "homepage": {
+          "id": "app",
+          "name": "App"
+        },
+        "travels": {
+          "id": "travels",
+          "name": "Travels"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "ns.travels.view.travels",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
