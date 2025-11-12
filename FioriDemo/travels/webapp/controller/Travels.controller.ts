@@ -15,7 +15,9 @@ export default class Travels extends Controller {
         const resourceBundle = (this.getView()?.getModel("i18n") as ResourceModel)?.getResourceBundle() as ResourceBundle;
         const msg = resourceBundle.getText("helloMsg", [recipient]) || "No text defined";
         MessageToast.show(msg);
+    }
 
+    onGoBack(): void {
         const router = UIComponent.getRouterFor(this);
         router.navTo("homepage");
     }

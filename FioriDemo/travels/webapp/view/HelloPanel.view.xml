@@ -5,22 +5,29 @@
 >
     <Panel
         id="panel-2"
-        headerText="{i18n>helloPanelTitle}"
+        headerText="{i18n>subpageHeader}"
         class="sapUiResponsiveMargin"
         width="auto"
     >
         <content>
             <Button
+                id="button-redirect"
+                text="{i18n>redirectButtonText}"
+                press=".onRedirect"
+                type="Neutral"
+                class="sapUiSmallMarginEnd"
+            />
+            <Button
+                id="helloDialogButton"
+                text="{i18n>openDialogButtonText}"
+                press=".onOpenDialog"
+                class="sapUiSmallMarginEnd"/>
+            <Button
                 id="button-hello"
                 text="{i18n>showHelloButtonText}"
                 press=".onShowHello"
                 class="myCustomButton"
-            />
-            <Button
-                id="button-redirect"
-                text="{i18n>redirectButtonText}"
-                press=".onRedirect"
-                class="myCustomButton"
+                type="Emphasized"
             />
             <Input
                 id="input-2"

@@ -16,6 +16,13 @@
             >
                 <content>
                     <Button
+                        id="button-go-back"
+                        text="{i18n>goBackButtonText}"
+                        press=".onGoBack"
+                        type="Back"
+                        class="sapUiSmallMarginEnd"
+                    />
+                    <Button
                         type="Accept"
                         id="button-1"
                         press=".onButtonPress"
