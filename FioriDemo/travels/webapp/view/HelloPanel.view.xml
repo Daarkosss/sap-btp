@@ -21,7 +21,9 @@
                 id="helloDialogButton"
                 text="{i18n>openDialogButtonText}"
                 press=".onOpenDialog"
-                class="sapUiSmallMarginEnd"/>
+                class="sapUiSmallMarginEnd"
+                icon="sap-icon://world"
+            />
             <Button
                 id="button-hello"
                 text="{i18n>showHelloButtonText}"
@@ -33,12 +35,12 @@
                 id="input-2"
                 value="{/recipient/name}"
                 valueLiveUpdate="true"
-                width="60%"
+                width="30%"
             />
             <FormattedText
                 id="text-2"
                 htmlText="Hello {/recipient/name}"
-                class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"
+                class="sapUiTinyMargin sapThemeHighlight-asColor myCustomText"
             />
         </content>
     </Panel>
