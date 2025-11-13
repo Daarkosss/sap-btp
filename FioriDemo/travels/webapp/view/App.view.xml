@@ -16,8 +16,12 @@
                 >
                     <content>
                         <mvc:XMLView
-                            id="xml-view-1"
+                            id="hello-view"
                             viewName="ns.travels.view.HelloPanel"
+                        />
+                        <mvc:XMLView
+                            id="invoice-list-view"
+                            viewName="ns.travels.view.InvoiceList"
                         />
                     </content>
                 </Page>
