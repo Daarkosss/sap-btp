@@ -43,6 +43,11 @@ server:
           overridesToOverride: true
         excludePatterns:
           - /Component-preload.js
+    - name: ui5-middleware-simpleproxy
+      afterMiddleware: compression
+      mountPath: /V2
+      configuration:
+        baseUri: "https://services.odata.org"
 builder:
   customTasks:
     - name: ui5-tooling-transpile-task

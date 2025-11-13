@@ -33,6 +33,13 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "invoiceRemote": {
+        "uri": "V2/Northwind/Northwind.svc/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
       }
     },
     "crossNavigation": {
@@ -92,8 +99,7 @@
         "settings": {}
       },
       "invoice": {
-        "type": "sap.ui.model.json.JSONModel",
-        "uri": "model/localInvoices.json"
+        "dataSource": "invoiceRemote"
       }
     },
     "resources": {
