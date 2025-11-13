@@ -5,12 +5,32 @@
     xmlns:mvc="sap.ui.core.mvc"
 >
     <List
-        id="list-invoices"
+        id="invoice-list"
         headerText="{i18n>invoiceListTitle}"
         class="sapUiResponsiveMargin"
         width="auto"
-        items="{invoice>/Invoices}"
+        items="{
+            path: 'invoice>/Invoices',
+            sorter: {
+                path: 'ShipperName',
+                group: true
+            }
+        }"
     >
+        <headerToolbar>
+            <Toolbar id="invoice-list-toolbar">
+                <Title
+                    id="invoice-list-title"
+                    text="{i18n>invoiceListTitle}"
+                />
+                <ToolbarSpacer id="invoice-list-spacer" />
+                <SearchField
+                    id="invoice-list-search-field"
+                    width="50%"
+                    search=".onFilterInvoices"
+                />
+            </Toolbar>
+        </headerToolbar>
         <items>
             <ObjectListItem
                 id="item-invoice"
@@ -40,7 +60,8 @@
                         text="{
                             path: 'invoice>Status',
                             formatter: 'Formatter.statusText.bind($controller)'
-                        }"/>
+                        }"
+                    />
                 </firstStatus>
             </ObjectListItem>
         </items>
