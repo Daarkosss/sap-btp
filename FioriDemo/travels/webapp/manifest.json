@@ -122,9 +122,14 @@
       },
       "routes": [
         {
-          "name": "homepage",
-          "pattern": ":?query:",
-          "target": "homepage"
+          "name": "overview",
+          "pattern": "",
+          "target": "overview"
+        },
+        {
+          "pattern": "detail/{invoicePath}",
+          "name": "detail",
+          "target": "detail"
         },
         {
           "name": "travels",
@@ -133,9 +138,13 @@
         }
       ],
       "targets": {
-        "homepage": {
-          "id": "app",
-          "name": "App"
+        "overview": {
+          "id": "overview",
+          "name": "Overview"
+        },
+        "detail": {
+          "id": "detail",
+          "name": "Detail"
         },
         "travels": {
           "id": "travels",

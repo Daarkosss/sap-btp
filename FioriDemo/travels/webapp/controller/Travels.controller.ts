@@ -19,6 +19,6 @@ export default class Travels extends Controller {
 
     onGoBack(): void {
         const router = UIComponent.getRouterFor(this);
-        router.navTo("homepage");
+        router.navTo("overview");
     }
 }

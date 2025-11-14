@@ -1,5 +1,8 @@
+import ObjectListItem from "sap/m/ObjectListItem";
 import { SearchField$SearchEvent } from "sap/m/SearchField";
+import Event from "sap/ui/base/Event";
 import Controller from "sap/ui/core/mvc/Controller";
+import UIComponent from "sap/ui/core/UIComponent";
 import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
 import JSONModel from "sap/ui/model/json/JSONModel";
@@ -9,12 +12,12 @@ import ListBinding from "sap/ui/model/ListBinding";
  * @namespace ns.travels.controller
  */
 export default class App extends Controller {
-    
+
     onInit(): void {
         const viewModel = new JSONModel({
             currency: "EUR"
         });
-        this.getView()?.setModel(viewModel, "view");        
+        this.getView()?.setModel(viewModel, "view");
     }
 
     onFilterInvoices(event: SearchField$SearchEvent): void {
@@ -28,5 +31,16 @@ export default class App extends Controller {
         const list = this.byId("invoice-list");
         const binding = list?.getBinding("items") as ListBinding;
         binding?.filter(filter);
+    }
+
+    onPress(event: Event): void {
+        const item = event.getSource() as ObjectListItem;
+        const context = item.getBindingContext("invoice");
+        if (context) {
+            const router = UIComponent.getRouterFor(this);
+            router.navTo("detail", {
+                invoicePath: window.encodeURIComponent(context.getPath().substring(1))
+            });
+        }
     }
 };

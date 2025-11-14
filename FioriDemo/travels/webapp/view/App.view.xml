@@ -8,24 +8,6 @@
         <App
             id="app"
             class="myAppDemoWT"
-        >
-            <pages>
-                <Page
-                    id="page-2"
-                    title="{i18n>homePageTitle}"
-                >
-                    <content>
-                        <mvc:XMLView
-                            id="hello-view"
-                            viewName="ns.travels.view.HelloPanel"
-                        />
-                        <mvc:XMLView
-                            id="invoice-list-view"
-                            viewName="ns.travels.view.InvoiceList"
-                        />
-                    </content>
-                </Page>
-            </pages>
-        </App>
+        />
     </Shell>
 </mvc:View>

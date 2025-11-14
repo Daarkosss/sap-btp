@@ -1,0 +1,25 @@
+<mvc:View
+    controllerName="ns.travels.controller.Detail"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:wt="ns.travels.control"
+>
+    <Page
+        id="page-detail"
+        title="{i18n>detailPageTitle}"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+    >
+        <ObjectHeader
+            id="object-header-detail"
+            intro="{invoice>ShipperName}"
+            title="{invoice>ProductName}"
+        />
+        <wt:ProductRating
+            id="rating"
+            tooltip="{invoice>ProductName}"
+            class="sapUiSmallMarginBeginEnd"
+            change=".onRatingChange"
+        />
+    </Page>
+</mvc:View>
