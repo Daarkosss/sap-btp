@@ -1,14 +1,22 @@
-/* global window, parent, location */
-
-// eslint-disable-next-line fiori-custom/sap-no-global-define,@typescript-eslint/ban-ts-comment
-// @ts-nocheck
-window.suite = function() {
-	// eslint-disable-next-line
-	var oSuite = new parent.jsUnitTestSuite(),
-	  	sContextPath = location.pathname.substring(0, location.pathname.lastIndexOf("/") + 1);
-
-	oSuite.addTestPage(sContextPath + "unit/unitTests.qunit.html");
-	oSuite.addTestPage(sContextPath + "integration/opaTests.qunit.html");
-
-	return oSuite;
+export default {
+	name: "QUnit test suite for UI5 TypeScript Walkthrough",
+	defaults: {
+		page: "ui5://test-resources/ns/travels/Test.qunit.html?testsuite={suite}&test={name}",
+		qunit: {
+			version: 2
+		},
+		ui5: {
+			theme: "sap_horizon"
+		},
+		loader: {
+			paths: {
+				"ns/travels": "../"
+			}
+		}
+	},
+	tests: {
+		"unit/unitTests": {
+			title: "UI5 TypeScript Walkthrough - Unit Tests"
+		}
+	}
 };
