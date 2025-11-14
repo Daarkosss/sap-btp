@@ -1,34 +1,25 @@
-/*global QUnit*/
 import opaTest from "sap/ui/test/opaQunit";
-import AppPage from "./pages/AppPage";
-import ViewPage from "./pages/TravelsPage";
+import HelloPanelPage from "./pages/HelloPanelPage";
 
-import Opa5 from "sap/ui/test/Opa5";
+const onTheHelloPanelPage = new HelloPanelPage();
 
-QUnit.module("Navigation Journey");
+QUnit.module("Navigation");
 
-const onTheAppPage = new AppPage();
-const onTheViewPage = new ViewPage();
-Opa5.extendConfig({
-	viewNamespace: "ns.travels.view.",
-	autoWait: true
-});
+opaTest("Should open the Hello dialog", function () {
 
-opaTest("Should see the initial page of the app", function () {
 	// Arrangements
-	// eslint-disable-next-line @typescript-eslint/no-floating-promises
-	onTheAppPage.iStartMyUIComponent({
+	onTheHelloPanelPage.iStartMyUIComponent({
 		componentConfig: {
 			name: "ns.travels"
 		}
 	});
-
+	
+	// Actions
+	onTheHelloPanelPage.iPressTheSayHelloWithDialogButton();
+	
 	// Assertions
-	onTheAppPage.iShouldSeeTheApp();
-	onTheViewPage.iShouldSeeThePageView();
-
-
+	onTheHelloPanelPage.iShouldSeeTheHelloDialog();
+	
 	// Cleanup
-	// eslint-disable-next-line @typescript-eslint/no-floating-promises
-	onTheAppPage.iTeardownMyApp();
+	onTheHelloPanelPage.iTeardownMyApp();
 });
