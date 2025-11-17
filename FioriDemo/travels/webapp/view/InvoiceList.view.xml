@@ -4,77 +4,73 @@
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
 >
-    <Table
-        id="invoice-list"
-        headerText="{i18n>invoiceListTitle}"
-        class="sapUiResponsiveMargin"
-        width="auto"
-        items="{
-            path: 'invoice>/Invoices',
-            sorter: {
-                path: 'ShipperName',
-                group: true
-            }
-        }"
-    >
+    <Panel accessibleRole="Region">
         <headerToolbar>
-            <Toolbar id="invoice-list-toolbar">
-                <Title
-                    id="invoice-list-title"
-                    text="{i18n>invoiceListTitle}"
-                />
-                <ToolbarSpacer id="invoice-list-spacer" />
+            <Toolbar>
+                <Title text="{i18n>invoiceListTitle}" />
+                <ToolbarSpacer />
                 <SearchField
-                    id="invoice-list-search-field"
                     width="50%"
                     search=".onFilterInvoices"
                 />
             </Toolbar>
         </headerToolbar>
-        <columns>
-            <Column
-                hAlign="End"
-                minScreenWidth="Small"
-                demandPopin="true"
-                width="5em"
-            >
-                <Text text="{i18n>columnQuantity}" />
-            </Column>
-            <Column>
-                <Text text="{i18n>columnName}" />
-            </Column>
-            <Column
-                minScreenWidth="Small"
-                demandPopin="true"
-            >
-                <Text text="{i18n>columnStatus}" />
-            </Column>
-            <Column
-                minScreenWidth="Tablet"
-                demandPopin="false"
-            >
-                <Text text="{i18n>columnSupplier}" />
-            </Column>
-            <Column hAlign="End">
-                <Text text="{i18n>columnPrice}" />
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem
-                type="Navigation"
-                press=".onPress"
-            >
-                <cells>
-                    <ObjectNumber
-                        number="{invoice>Quantity}"
-                        emphasized="false"
-                    />
-                    <ObjectIdentifier title="{invoice>ProductName}" />
-                    <Text
-                        core:require="{
+        <Table
+            id="invoice-list"
+            class="sapUiResponsiveMargin"
+            width="auto"
+            items="{
+                path: 'invoice>/Invoices',
+                sorter: {
+                    path: 'ShipperName',
+                    group: true
+                }
+            }"
+        >
+            <columns>
+                <Column
+                    hAlign="End"
+                    minScreenWidth="Small"
+                    demandPopin="true"
+                    width="5em"
+                >
+                    <Text text="{i18n>columnQuantity}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>columnName}" />
+                </Column>
+                <Column
+                    minScreenWidth="Small"
+                    demandPopin="true"
+                >
+                    <Text text="{i18n>columnStatus}" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="false"
+                >
+                    <Text text="{i18n>columnSupplier}" />
+                </Column>
+                <Column hAlign="End">
+                    <Text text="{i18n>columnPrice}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem
+                    type="Navigation"
+                    press=".onPress"
+                >
+                    <cells>
+                        <ObjectNumber
+                            number="{invoice>Quantity}"
+                            emphasized="false"
+                        />
+                        <ObjectIdentifier title="{invoice>ProductName}" />
+                        <Text
+                            core:require="{
 								Formatter: 'ns/travels/model/formatter'
 						}"
-                        text="{
+                            text="{
 								parts: [
 									'invoice>Status',
 									'i18n>invoiceStatusA',
@@ -83,13 +79,13 @@
 								],
 								formatter: 'Formatter.statusText.bind($controller)'
 						}"
-                    />
-                    <Text text="{invoice>ShipperName}" />
-                    <ObjectNumber
-                        core:require="{
+                        />
+                        <Text text="{invoice>ShipperName}" />
+                        <ObjectNumber
+                            core:require="{
 							Currency: 'sap/ui/model/type/Currency'
 						}"
-                        number="{
+                            number="{
 							parts: [
 								'invoice>ExtendedPrice',
 								'view>/currency'
@@ -99,11 +95,12 @@
 								showMeasure: false
 							}
 						}"
-                        unit="{view>/currency}"
-                        state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
-                    />
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
+                            unit="{view>/currency}"
+                            state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
 </mvc:View>

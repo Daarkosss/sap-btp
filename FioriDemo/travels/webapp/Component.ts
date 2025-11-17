@@ -4,6 +4,7 @@ import ResourceModel from "sap/ui/model/resource/ResourceModel";
 import Control from "sap/ui/core/Control";
 import XMLView from "sap/ui/core/mvc/XMLView";
 import UIComponent from "sap/ui/core/UIComponent";
+import Device from "sap/ui/Device";
 
 /**
  * @namespace ns.travels
@@ -45,5 +46,9 @@ export default class Component extends UIComponent {
             "viewName": "ns.travels.view.App",
             "id": "app"
         })
+    }
+
+    getContentDensityClass(): string {
+        return Device.support.touch ? "sapUiSizeCozy" : "sapUiSizeCompact";
     }
 }
