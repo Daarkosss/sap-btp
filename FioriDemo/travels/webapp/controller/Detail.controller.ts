@@ -6,6 +6,7 @@ import MessageToast from "sap/m/MessageToast";
 import ProductRating, { ProductRating$ChangeEvent } from "../control/ProductRating";
 import ResourceBundle from "sap/base/i18n/ResourceBundle";
 import ResourceModel from "sap/ui/model/resource/ResourceModel";
+import JSONModel from "sap/ui/model/json/JSONModel";
 
 /**
  * @namespace ns.travels.controller
@@ -13,14 +14,19 @@ import ResourceModel from "sap/ui/model/resource/ResourceModel";
 export default class Detail extends Controller {
 
     onInit(): void {
+        const viewModel = new JSONModel({
+            currency: "EUR"
+        });
+        this.getView()?.setModel(viewModel, "view");
+
         const router = UIComponent.getRouterFor(this);
         router.getRoute("detail")?.attachPatternMatched(this.onObjectMatched, this);
     }
 
     onObjectMatched(event: Route$PatternMatchedEvent): void {
-        (<ProductRating> this.byId("rating")).reset();
+        (<ProductRating>this.byId("rating")).reset();
         this.getView()?.bindElement({
-            path: "/" + window.decodeURIComponent( (event.getParameter("arguments") as any).invoicePath),
+            path: "/" + window.decodeURIComponent((event.getParameter("arguments") as any).invoicePath),
             model: "invoice"
         });
     }
@@ -39,8 +45,8 @@ export default class Detail extends Controller {
 
     onRatingChange(event: ProductRating$ChangeEvent): void {
         const value = event.getParameter("value");
-        const resourceBundle = <ResourceBundle> (<ResourceModel> this.getView()?.getModel("i18n"))?.getResourceBundle();
-		
+        const resourceBundle = <ResourceBundle>(<ResourceModel>this.getView()?.getModel("i18n"))?.getResourceBundle();
+
         MessageToast.show(resourceBundle.getText("ratingConfirmation", [value]) || "Text not found");
     }
 };

@@ -3,6 +3,7 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:wt="ns.travels.control"
+    xmlns:core="sap.ui.core"
 >
     <Page
         id="page-detail"
@@ -14,7 +15,44 @@
             id="object-header-detail"
             intro="{invoice>ShipperName}"
             title="{invoice>ProductName}"
-        />
+            core:require="{
+                Date: 'sap/ui/model/type/Date',
+                Currency: 'sap/ui/model/type/Currency'
+            }"
+            responsive="true"
+            fullScreenOptimized="true"
+            number="{
+                parts: [
+                    'invoice>ExtendedPrice',
+                    'view>/currency'
+                ],
+                type: 'Currency',
+                formatOptions: {
+                    showMeasure: false
+                }
+            }"
+            numberUnit="{view>/currency}"
+        >
+            <attributes>
+                <ObjectAttribute
+                    title="{i18n>quantityTitle}"
+                    text="{invoice>Quantity}"
+                />
+                <ObjectAttribute
+                    title="{i18n>dateTitle}"
+                    text="{
+                        path: 'invoice>ShippedDate',
+                        type: 'Date',
+                        formatOptions: {
+                            style: 'long',
+                            source: {
+                                pattern: 'yyyy-MM-ddTHH:mm:ss'
+                            }
+                        }
+                    }"
+                />
+            </attributes>
+        </ObjectHeader>
         <wt:ProductRating
             id="rating"
             tooltip="{invoice>ProductName}"
