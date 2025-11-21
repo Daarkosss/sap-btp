@@ -17,6 +17,7 @@
     "@typescript-eslint/parser": "^7.1.1",
     "@ui5/cli": "^4.0.16",
     "@ui5/ts-interface-generator": "^0.10.4",
+    "local-web-server": "^5.4.0",
     "typescript": "^5.1.6",
     "ui5-middleware-simpleproxy": "^3.5.2",
     "ui5-tooling-transpile": "^3.3.7"
@@ -24,7 +25,8 @@
   "scripts": {
     "start": "ui5 serve -o",
     "start-local": "fiori run --config ./ui5-local.yaml --open \"/test/flpSandbox.html?sap-ui-xx-viewCache=false#nstravels-display\"",
-    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
+    "build": "ui5 build --all --clean-dest",
+    "serve-dist": "ws --compress -d dist --open",
     "lint": "eslint ./",
     "ts-typecheck": "tsc --noEmit",
     "prestart": "npm run ts-typecheck",
